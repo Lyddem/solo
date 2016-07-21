@@ -1,0 +1,53 @@
+<html>
+<head>
+  <title>Exercise: Add Endpoint</title>
+</head>
+<body>
+
+<div class="chats"></div>
+
+<form class="new-chat">
+  <h5>Author</h5>
+  <input type="text" name="author" />
+  <h5>Message</h5>
+  <textarea name="content"></textarea>
+
+  <button type="submit">Submit Message</button>
+</form>
+
+<script src="https://code.jquery.com/jquery-2.2.0.js"></script>
+<script type="text/javascript">
+
+$('form.new-chat').on('submit', function (e) {
+  e.preventDefault();
+
+  var form = this;
+
+  var payload = JSON.stringify({
+    author: form.author.value,
+    content: form.content.value
+  });
+
+  $.ajax({
+    type: 'POST',
+    url: '/chats',
+    contentType: 'application/json', // Inform server that *our* content type is JSON
+    data: payload, // The actual data, as a string (you can only send strings over the internet)
+  })
+    .then(function() {
+      // clear input fields
+      form.author.value = '';
+      form.content.value = '';
+    });
+});
+
+
+//
+// TODO: Fetch results from server
+//
+// $.ajax( ... )
+//   .then(function (chats) { ... })
+
+</script>
+</body>
+</html>

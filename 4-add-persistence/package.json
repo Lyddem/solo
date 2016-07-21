@@ -1,0 +1,20 @@
+{
+  "name": "4-add-persistence",
+  "version": "1.0.0",
+  "description": "A shopping list app is set up for you. However, it uses an in-memory array to store data. This is not good, since that array gets lost when we restart the server. We need a database!",
+  "main": "server.js",
+  "scripts": {
+    "test": "./node_modules/.bin/tape server_spec.js",
+    "start": "node server.js"
+  },
+  "author": "Gilbert <gilbertbagrza@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.14.2",
+    "express": "^4.13.3"
+  },
+  "devDependencies": {
+    "supertest": "^1.1.0",
+    "tape": "^4.4.0"
+  }
+}

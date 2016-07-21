@@ -1,0 +1,21 @@
+{
+  "name": "5-user-accounts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "./node_modules/.bin/tape server_spec.js",
+    "start": "node server.js"
+  },
+  "author": "Gilbert <gilbertbagrza@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.14.2",
+    "express": "^4.13.3",
+    "node-uuid": "^1.4.7"
+  },
+  "devDependencies": {
+    "supertest": "^1.1.0",
+    "tape": "^4.4.0"
+  }
+}
