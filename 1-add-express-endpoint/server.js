@@ -21,7 +21,7 @@ app.post('/jokes', function(req,res){
 })
 
 app.get('/jokes', function(req, res) {
-  res.send(jokes);
+  res.send(200, jokes);  
 });
 
 
