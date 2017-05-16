@@ -1,4 +1,4 @@
-	# 1. Add Express Endpoint
+# 1. Add Express Endpoint
 
 You are building a legendary jokes server, a server with jokes sourced from the best comedians on the planet. So far you've gotten one endpoint to work. Almost there!
 

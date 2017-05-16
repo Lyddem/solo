@@ -13,8 +13,7 @@ test('GET /jokes', function (assert) {
       assert.end();
     });
 });
-
-
+  
 test('POST /jokes', function (assert) {
 
   var joke = {
