@@ -4,7 +4,7 @@ var bodyParser = require('body-parser')
 var chats = []
 var server = express()
 
-server.use( bodyParser.json() )
+server.use(bodyParser.json() )
 
 server.post('/chats', function (req, res) {
   console.log("Received chat:", req.body)
@@ -13,12 +13,8 @@ server.post('/chats', function (req, res) {
   res.sendStatus(201)
 })
 
-//
 // TODO: Define a handler for a `GET /chats` request
-//
-//    ----
-// -- TODO --
-//    ----
+
 server.get('/chats', function(req,res){
 	res.send(chats);
 })
