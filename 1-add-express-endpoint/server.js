@@ -12,7 +12,6 @@ app.use(bodyParser.json())
 
 var jokes = [];
 
-
 // TODO
 // app.post(...)
 app.post('/jokes', function(req,res){
