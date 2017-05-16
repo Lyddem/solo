@@ -13,6 +13,6 @@ Now visit [localhost:3030](http://localhost:3030)
 
 ## Requirements
 
-- [ ] Alter the server file to return all chats in response to `GET /chats`
-- [ ] Update `client.html` to make this request, then console log the result
-- [ ] Display these results on the page (within the `<div class="chats">` element)
+- [x] Alter the server file to return all chats in response to `GET /chats`
+- [x] Update `client.html` to make this request, then console log the result
+- [x] Display these results on the page (within the `<div class="chats">` element)

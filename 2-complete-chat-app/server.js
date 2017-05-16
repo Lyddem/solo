@@ -19,10 +19,13 @@ server.post('/chats', function (req, res) {
 //    ----
 // -- TODO --
 //    ----
+server.get('/chats', function(req,res){
+	res.send(chats);
+})
 
 server.get('/', function (req, res) {
-  res.sendFile( __dirname + '/client.html' )
+  res.sendFile( __dirname + '/client.html' ) //	
 })
 
 server.listen(3030)
-console.log("Listening on port 3030")
+console.log("Listening on port 3030"); 

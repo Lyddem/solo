@@ -17,16 +17,7 @@ console.log("[Exercise #1]")
 function findDominatingAliceGameScores () {
 
   // First find alice
-  var alice = null
-
-  // for (var i=0; i < Data.players.length; i++) {
-  //   if ( Data.players[i].name === 'Alice' ) {
-  //     alice = Data.players[i]
-  //     break;
-  //   }
-  // }
-
-  // Solution, to get you started:
+  var alice = null;
 
   var alice = Data.players.find(function hasNameAlice(person){
      return person.name === 'Alice';
@@ -36,7 +27,7 @@ function findDominatingAliceGameScores () {
   // Next, find all games where alice won
   var aliceGames = []
 
-  // for (var i = 0; i < Data.games.length; i++) {  //[{},{},{}]
+   // for (var i = 0; i < Data.games.length; i++) {  //[{},{},{}]
   //   var game = Data.games[i]
   //   if (
   //        game.player1_id === alice.id && game.player1_score === 100
@@ -47,29 +38,38 @@ function findDominatingAliceGameScores () {
   // }
 
   var aliceWon = Data.games.map(function(game){
-    if(game.player1_id === alice.id &&  game.player1_score === 100 ||
-           game.player2_id === alice.id &&  game.player2_score === 100){
+    if (game.player1_id === alice.id &&  game.player1_score === 100 ||
+           game.player2_id === alice.id &&  game.player2_score === 100)
+    {
       aliceGames.push(game);
     }
   });
 
-// Data.games.map(function(game){
-//   if(gamesAlicealiceGames.push(game);
-// })
   // Next, filter for dominating games and add differences
   var dominating = []
+  var dominatingSub= [];
 
-  for (var i=0; i < aliceGames.length; i++) {
-    var game = aliceGames[i]
-    var difference = Math.abs(game.player1_score - game.player2_score)
-    if ( difference >= 50 ) {
-      dominating.push( difference )
-    }
-  }
+//   for (var i = 0; i < aliceGames.length; i++) { //for all the games she won
+//     var game = aliceGames[i] //keep track of current game
+//     var difference = Math.abs(game.player1_score - game.player2_score) //find the difference in domination
+//     if ( difference >= 50 ) { //if diff > 50
+//       dominating.push( difference ) //push score into dominating,
+//     }
+//   }
+//   console.log(dominating) //[57,97]
+//   return dominating.sort() //sort from highest to lowest
+// }
+var dominatingScores = aliceGames.filter(function(game){
+  return Math.abs(game.player2_score - game.player1_score) > 50;
+});
 
-  return dominating.sort()
+var scores = dominatingScores.map(function(obj){
+   var score = Math.abs(obj.player2_score - obj.player1_score)
+    dominatingSub.push(score);
+});
+  dominating = dominatingSub.sort();
+  return dominating;
 }
-
 
 // Tests
 var testRun = findDominatingAliceGameScores();
@@ -94,7 +94,37 @@ console.log("All good!");
 
 function findDominatingAliceGameScores2 () {
   // TODO: Copy/paste the code you wrote in Exercise #1
-}
+// First find alice
+  var alice = Data.players.find(function hasNameAlice(person){
+     return person.name === 'Alice';
+  });
+
+  // Next, find all games where alice won
+  var aliceGames = []
+
+  var aliceWon = Data.games.map(function(game){
+    if (game.player1_id === alice.id &&  game.player1_score === 100 ||
+           game.player2_id === alice.id &&  game.player2_score === 100)
+    {
+      aliceGames.push(game);
+    }
+  });
+
+  // Next, filter for dominating games and add differences
+  var dominating = []
+  var dominatingSub= [];
+
+  var dominatingScores = aliceGames.filter(function(game){
+    return Math.abs(game.player2_score - game.player1_score) > 50;
+  });
+
+  var scores = dominatingScores.map(function(obj){
+     var score = Math.abs(obj.player2_score - obj.player1_score)
+      dominatingSub.push(score);
+  });
+    dominating = dominatingSub.sort();
+    return dominating;
+  }
 
 function hasName (name) {
   return function (person) {
@@ -115,6 +145,10 @@ function toPlayerScoreDifference (game) {
 
 function greaterThanOrEqualTo (amount) {
   // TODO: Implement this function, curry-style.
+  return function (finalArray) {
+    var dominatingSub = [];
+    
+  }
 }
 
 console.log("[Exercise #2]")

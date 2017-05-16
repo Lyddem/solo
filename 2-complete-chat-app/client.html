@@ -40,13 +40,32 @@ $('form.new-chat').on('submit', function (e) {
       form.content.value = '';
     });
 });
-
-
-//
+  
 // TODO: Fetch results from server
 //
 // $.ajax( ... )
 //   .then(function (chats) { ... })
+$.ajax({
+  type: 'GET',
+  url: '/chats',
+  contentType: 'application/json',
+  // dataType: 'jsonp',
+  // data: payload,
+  success: function(data) {
+    console.log('successful server request to /chats');
+    // console.log(data);
+  },
+  error: function(err) {
+    console.log('error getting request from /chats', err);
+  }
+})
+  .then(function (chats) { 
+    console.log('chats', chats);
+    for(var i = 0; i < chats.length; i++){
+      console.log('response', chats[i].author + ' says ' + chats[i].content + '!');
+    $('.chats').append(chats[i].author + ' says ' + chats[i].content + '!\n');
+    }
+})
 
 </script>
 </body>
