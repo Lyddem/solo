@@ -4,8 +4,6 @@ function assert (actual, expected) {
   }
 }
 
-console.log("Delete this console log!")
-
 // Exercise #1
 //
 // Use find, filter, and map to abstract away all the
@@ -21,33 +19,43 @@ function findDominatingAliceGameScores () {
   // First find alice
   var alice = null
 
-  for (var i=0; i < Data.players.length; i++) {
-    if ( Data.players[i].name === 'Alice' ) {
-      alice = Data.players[i]
-      break;
-    }
-  }
+  // for (var i=0; i < Data.players.length; i++) {
+  //   if ( Data.players[i].name === 'Alice' ) {
+  //     alice = Data.players[i]
+  //     break;
+  //   }
+  // }
 
   // Solution, to get you started:
-  /*
+
   var alice = Data.players.find(function hasNameAlice(person){
      return person.name === 'Alice';
   });
-  */
+
 
   // Next, find all games where alice won
   var aliceGames = []
 
-  for (var i=0; i < Data.games.length; i++) {
-    var game = Data.games[i]
-    if (
-         game.player1_id === alice.id && game.player1_score === 100
-      || game.player2_id === alice.id && game.player2_score === 100
-    ) {
-      aliceGames.push(game)
-    }
-  }
+  // for (var i = 0; i < Data.games.length; i++) {  //[{},{},{}]
+  //   var game = Data.games[i]
+  //   if (
+  //        game.player1_id === alice.id && game.player1_score === 100
+  //     || game.player2_id === alice.id && game.player2_score === 100
+  //   ) {
+  //     aliceGames.push(game)
+  //   }
+  // }
 
+  var aliceWon = Data.games.map(function(game){
+    if(game.player1_id === alice.id &&  game.player1_score === 100 ||
+           game.player2_id === alice.id &&  game.player2_score === 100){
+      aliceGames.push(game);
+    }
+  });
+
+// Data.games.map(function(game){
+//   if(gamesAlicealiceGames.push(game);
+// })
   // Next, filter for dominating games and add differences
   var dominating = []
 
