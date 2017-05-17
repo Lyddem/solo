@@ -17,23 +17,33 @@ app.use( bodyParser.json() );
 app.post('/signup', function (req, res) {
 
   //   1. Make sure username is not taken 
+  // console.log('username', req.body.username)
+
+
         if(User.findByUsername(req.body.username) === null){
+          console.log( User.findByUsername(req.body.username) === null);
   //   2. Create user
          User.create(req.body.username, req.body.password);
+                     console.log( User.findByUsername(req.body.username) === null);
+
   //   3. Send back 201
          res.sendStatus(201);
         } else {
-         res.sendStatus(400);
+         res.status(400).send({reason:'username_is_taken'});
         }
 });
 
 // User sign in
 app.post('/signin', function (req, res) {
-  // ---
+  // console.log(req.body)
   // TODO:
   //   1. Attempt to find user by username
-       console.log('HERES THE REQUEST',req.body)
+      //if user exists
+      if(User.findByUsername(req.body.username) !== null){
+        // if(req.body.password === )
+      } 
   //   2. Make sure passwords match
+
   //   3. Create a new session
   //   4. Send back new session's id (201)
        res.sendStatus(201);
