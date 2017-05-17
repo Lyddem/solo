@@ -1,11 +1,10 @@
-//
+  //
 // The Session Model
 //
 var Session = module.exports;
 
 var uuid = require('node-uuid');
 var list = [];
-
 
 Session.find = function (id) {
   for (var i=0; i < list.length; i++) {

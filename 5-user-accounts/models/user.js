@@ -1,4 +1,4 @@
-//
+  //
 // The User Model
 //
 var User = module.exports;
@@ -36,7 +36,7 @@ User.create = function (username, password) {
 };
 
 User.matchesPassword = function (user, incomingPassword) {
-  return hashPassword(user.password) === incomingPassword;
+  return hashPassword(user.password) === hashPassword(incomingPassword); //<-- me 
 }
 
 //
@@ -49,3 +49,16 @@ var crypto = require('crypto');
 function hashPassword (password) {
   return crypto.createHash('md5').update(password).digest("hex");
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

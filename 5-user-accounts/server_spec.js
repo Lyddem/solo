@@ -28,7 +28,7 @@ test('POST /signup', function (assert) {
 });
 
 
-test.skip('POST /signup (taken username)', function (assert) {
+test('POST /signup (taken username)', function (assert) {
   assert.timeoutAfter(1500)
 
   // First sign up...
@@ -54,7 +54,7 @@ test.skip('POST /signup (taken username)', function (assert) {
 })
 
 
-test.skip('POST /signin', function (assert) {
+test('POST /signin', function (assert) {
   assert.timeoutAfter(1500)
 
   // First create the user account...

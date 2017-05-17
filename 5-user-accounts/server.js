@@ -8,38 +8,35 @@ var User    = require('./models/user')
 var Session = require('./models/session')
 var Message = require('./models/message')
 
-
 var app = express();
 module.exports = app;
 
 app.use( bodyParser.json() );
 
-
-//
 // User sign up
-//
 app.post('/signup', function (req, res) {
-  // ---
-  // TODO:
-  //   1. Make sure username is not taken
+
+  //   1. Make sure username is not taken 
+        if(User.findByUsername(req.body.username) === null){
   //   2. Create user
-          
+         User.create(req.body.username, req.body.password);
   //   3. Send back 201
-       res.sendStatus(201);
-  // ---
+         res.sendStatus(201);
+        } else {
+         res.sendStatus(400);
+        }
 });
 
-
-//
 // User sign in
-//
 app.post('/signin', function (req, res) {
   // ---
   // TODO:
   //   1. Attempt to find user by username
+       console.log('HERES THE REQUEST',req.body)
   //   2. Make sure passwords match
   //   3. Create a new session
   //   4. Send back new session's id (201)
+       res.sendStatus(201);
   // ---
 });
 
@@ -58,15 +55,12 @@ app.post('/messages', function (req, res) {
   // ---
 });
 
-
 //
 // [Public] chat messages
 //
 app.get('/messages', function (req, res) {
   res.send( Message.all() );
 });
-
-
 
 //
 // [Helper] Extracts a token from the Authorization header
