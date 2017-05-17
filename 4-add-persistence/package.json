@@ -11,7 +11,9 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.14.2",
-    "express": "^4.13.3"
+    "express": "^4.13.3",
+    "knex": "^0.13.0",
+    "sqlite3": "^3.1.8"
   },
   "devDependencies": {
     "supertest": "^1.1.0",

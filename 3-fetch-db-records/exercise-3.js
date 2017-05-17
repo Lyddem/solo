@@ -6,9 +6,6 @@ var db = require('./db.js')
 //   	}
 // })	
 
-// var knex = require('./knexfile.js');
-
-
 exports.scoreRange = function (min, max) {
 
   //should return player.name in db from (min - max]
