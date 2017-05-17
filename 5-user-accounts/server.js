@@ -23,7 +23,9 @@ app.post('/signup', function (req, res) {
   // TODO:
   //   1. Make sure username is not taken
   //   2. Create user
+          
   //   3. Send back 201
+       res.sendStatus(201);
   // ---
 });
 
