@@ -1,4 +1,4 @@
-# 3. Fetch DB Records
+		# 3. Fetch DB Records
 
 A toy database is set up for you. Your task is to grab data from it!
 
@@ -11,7 +11,7 @@ $ npm test # <-- Make this pass!
 
 ## Requirements
 
-- [ ] Fill in the function in `exercise-3.js` to make the tests pass.
+- [x] Fill in the function in `exercise-3.js` to make the tests pass.
 
 ## Tips
 

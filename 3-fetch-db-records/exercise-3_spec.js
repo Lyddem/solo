@@ -12,7 +12,6 @@ test('setup', function (assert) {
     });
 });
 
-
 test('scoreRange', function (assert) {
 
   exercise.scoreRange(0, 100)
@@ -26,16 +25,15 @@ test('scoreRange', function (assert) {
         "Players are returned in descending score order"
       );
 
-      assert.end();
+      assert.end(); 
     });
 });
-
 
 test('scoreRange (2)', function (assert) {
 
   exercise.scoreRange(100, 250)
     .then(function (players) {
-      assert.equal(players.length, 2);
+      assert.equal(players.length, 3);
 
       var scores = players.map(function(p){ return p.score });
       assert.deepEqual(
@@ -53,3 +51,11 @@ test('teardown', function (assert) {
   db.destroy();
   assert.end();
 });
+
+
+
+
+
+
+
+

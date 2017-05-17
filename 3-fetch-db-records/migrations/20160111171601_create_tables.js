@@ -1,4 +1,4 @@
-
+	
 exports.up = function(knex, Promise) {
   return knex.schema.createTableIfNotExists('players', function (table) {
     table.integer('id');
