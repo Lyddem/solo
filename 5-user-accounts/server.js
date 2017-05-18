@@ -17,14 +17,13 @@ app.use( bodyParser.json() );
 app.post('/signup', function (req, res) {
 
   //   1. Make sure username is not taken 
-  // console.log('username', req.body.username)
+       // console.log('username', req.body.username)
 
-
-        if(User.findByUsername(req.body.username) === null){
-          console.log( User.findByUsername(req.body.username) === null);
+        if(User.findByUsername(req.body.username) === null){ //<-- not taken
+          // console.log( User.findByUsername(req.body.username) === null);
   //   2. Create user
-         User.create(req.body.username, req.body.password);
-                     console.log( User.findByUsername(req.body.username) === null);
+         User.create(req.body.username, req.body.password); 
+          // console.log( User.findByUsername(req.body.username) === null);
 
   //   3. Send back 201
          res.sendStatus(201);
@@ -35,30 +34,37 @@ app.post('/signup', function (req, res) {
 
 // User sign in
 app.post('/signin', function (req, res) {
-  // console.log(req.body)
-  // TODO:
+  console.log('USER', req.body)
   //   1. Attempt to find user by username
       //if user exists
       if(User.findByUsername(req.body.username) !== null){
+        // console.log('person already exists:', req.body.username)
         // if(req.body.password === )
-      } 
-  //   2. Make sure passwords match
 
+  //   2. Make sure passwords match
+          // if(User.matchesPassword(req.body, req.body.password)){
   //   3. Create a new session
+          //   Session.create();
+
+          // }
   //   4. Send back new session's id (201)
-       res.sendStatus(201);
-  // ---
+       res.status(201);
+          // res.status(201).send({sessionId: extractSessionId(req)});
+
+  } else {
+    res.status(401).send({reason: 'incorrect_password'});
+  }
 });
 
-
-//
 // Create chat message (requires a valid session)
 //
 app.post('/messages', function (req, res) {
   // ---
   // TODO:
   //   1. Extract the sessionId from the `Authorization` header
+          var session = extractSessionId(req);
   //   2. Look up session by its id
+
   //   3. Find user by the userId from the looked-up session
   //   4. Create a new message, with userId as the logged in user's id
   //   5. Send back 201
@@ -72,7 +78,6 @@ app.get('/messages', function (req, res) {
   res.send( Message.all() );
 });
 
-//
 // [Helper] Extracts a token from the Authorization header
 //
 //   e.g. extractSessionId(req) //=> 'abc123'
@@ -81,3 +86,6 @@ function extractSessionId (req) {
   var header = req.get('Authorization')
   return header && header.substring( header.indexOf('=') + 1 );
 }
+
+
+
