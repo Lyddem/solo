@@ -6,23 +6,24 @@ module.exports = app;
 
 app.use( bodyParser.json() );
 
-
 // ---
 // TODO:
 //  Add persistence!
-//
 var db = require('knex')({
   client: 'sqlite3',
   connection: {
-    filename: 'shopping-list.db'
-  }
+    filename: 'shopping-list.db' //Q
+  },
+  useNullAsDefault: true
 });
 
 db.schema.createTableIfNotExists('groceries', function(table){
-	table.increments();
 	table.string('name');
 	table.integer('quantity');
-});				
+})
+.then(function(){
+  console.log('successfully created groceries table');
+})				
 
 var items = [];
 
@@ -30,23 +31,36 @@ var items = [];
 // Retrieve all items
 //
 app.get('/items', function (req, res) {
-	var query = db.select('*').from('groceries');//me
-  res.status(200).send(query);
+	db.select('*').from('groceries')
+    .then( results => {
+      console.log('QUERY RESULTS::', results); 
+      res.status(200).send(results)
+      // res.status(200).send({name: results[0].name, quantity: results[0].quantity })
+    })
 });
+//res.json(results)
+//
+// Create a new item 
+//
 
-//
-// Create a new item
-//
 app.post('/items', function (req, res) {
-	db('groceries').insert({name: req.body.name, quantity: req.body.quantity}); //me
+	db('groceries').insert({name: req.body.name, quantity: req.body.quantity})
+  .then( data => {
+    console.log('RESPONSE', data);
+    res.sendStatus(201);
+  })
   // items.push({ name: req.body.name, quantity: req.body.quantity });
-  res.sendStatus(201);
+  
 });
 
 //
 // Clear all items
 //
+
 app.delete('/items', function (req, res) {
-  items = [];
-  res.sendStatus(200);
+db('groceries').del().then( _ =>  res.sendStatus(200))
 });
+
+
+
+

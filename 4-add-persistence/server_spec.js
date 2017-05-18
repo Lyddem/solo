@@ -2,7 +2,6 @@ var test    = require('tape');
 var request = require('supertest');
 var app     = require('./server.js');
 
-
 test('GET /items', function (assert) {
   assert.timeoutAfter(1500)
 
@@ -15,7 +14,6 @@ test('GET /items', function (assert) {
       assert.end();
     });
 });
-
 
 test('POST /items', function (assert) {
   assert.timeoutAfter(1500)
@@ -30,7 +28,7 @@ test('POST /items', function (assert) {
 
       // Now make a GET request to see if the data persisted
       request(app)
-        .get('/items')
+        .get('/items')  
         .expect(200)
         .end(function (err, response) {
           assert.error(err);
@@ -39,7 +37,6 @@ test('POST /items', function (assert) {
         });
     });
 });
-
 
 test('DELETE /items', function (assert) {
   assert.timeoutAfter(1500)

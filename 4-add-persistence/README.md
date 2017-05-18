@@ -3,7 +3,7 @@
 A shopping list app is set up for you. However, it uses an in-memory array to store data. This is not good, since that array gets lost when we restart the server. We need a database!
 
 ## Getting Started
-
+	
 ```bash
 $ npm install
 $ npm test # <-- This should already pass
