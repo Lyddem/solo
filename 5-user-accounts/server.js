@@ -45,17 +45,20 @@ console.log(req.body)
       //if the user already exists...
       if(user !== null){
         //if password matches...
-        if(User.matchesPassword(user, req.body.password)){
+        if(User.matchesPassword(user, req.body.password)){ //<--user given by client, password given by test
          //create session
           var session = Session.create(user.id)
           //send 201 and session id
           res.status(201).send({sessionId: session.id })
         //else send a 401
           }
-
-        }else {
+         //if pw does not match...
+         else {
+          res.status(400).send({reason: 'incorrect_password'})
+         }
+      } 
         res.status(401).send({reason: 'no_such_username'});
-      }
+      
 });
 // request(app)
 //         .post('/signin')
