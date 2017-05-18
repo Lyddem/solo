@@ -34,27 +34,37 @@ app.post('/signup', function (req, res) {
 
 // User sign in
 app.post('/signin', function (req, res) {
-  console.log('USER', req.body)
+  // console.log('USER', req.body)
   //   1. Attempt to find user by username
-      //if user exists
-      if(User.findByUsername(req.body.username) !== null){
-        // console.log('person already exists:', req.body.username)
-        // if(req.body.password === )
-
   //   2. Make sure passwords match
-          // if(User.matchesPassword(req.body, req.body.password)){
   //   3. Create a new session
-          //   Session.create();
-
-          // }
   //   4. Send back new session's id (201)
-       res.status(201);
-          // res.status(201).send({sessionId: extractSessionId(req)});
+console.log(req.body)
+      var user = User.findByUsername(req.body.username);
 
-  } else {
-    res.status(401).send({reason: 'incorrect_password'});
-  }
+      //if the user already exists...
+      if(user !== null){
+        //if password matches...
+        if(User.matchesPassword(user, req.body.password)){
+         //create session
+          var session = Session.create(user.id)
+          //send 201 and session id
+          res.status(201).send({sessionId: session.id })
+        //else send a 401
+          }
+
+        }else {
+        res.status(401).send({reason: 'no_such_username'});
+      }
 });
+// request(app)
+//         .post('/signin')
+//         .send({ username: 'carl', password: '123' })
+//         .expect(201)
+//         .end(function (err, response) {
+//           assert.error(err);
+//           assert.ok(response.body.sessionId, "The server should create a session.");
+//           assert.end();
 
 // Create chat message (requires a valid session)
 //
@@ -62,7 +72,7 @@ app.post('/messages', function (req, res) {
   // ---
   // TODO:
   //   1. Extract the sessionId from the `Authorization` header
-          var session = extractSessionId(req);
+          // var session = extractSessionId(req);
   //   2. Look up session by its id
 
   //   3. Find user by the userId from the looked-up session
