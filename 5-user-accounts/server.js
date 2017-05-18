@@ -18,7 +18,6 @@ app.post('/signup', function (req, res) {
 
   //   1. Make sure username is not taken 
        // console.log('username', req.body.username)
-
         if(User.findByUsername(req.body.username) === null){ //<-- not taken
           // console.log( User.findByUsername(req.body.username) === null);
   //   2. Create user
@@ -26,12 +25,12 @@ app.post('/signup', function (req, res) {
           // console.log( User.findByUsername(req.body.username) === null);
 
   //   3. Send back 201
-         res.sendStatus(201);
+         res.sendStatus(201); //<-- changed from sendStatus 
         } else {
          res.status(400).send({reason:'username_is_taken'});
         }
 });
-
+  
 // User sign in
 app.post('/signin', function (req, res) {
   // console.log('USER', req.body)
@@ -39,7 +38,7 @@ app.post('/signin', function (req, res) {
   //   2. Make sure passwords match
   //   3. Create a new session
   //   4. Send back new session's id (201)
-console.log(req.body)
+  // console.log(req.body)
       var user = User.findByUsername(req.body.username);
 
       //if the user already exists...
@@ -53,12 +52,15 @@ console.log(req.body)
         //else send a 401
           }
          //if pw does not match...
-         else {
-          res.status(400).send({reason: 'incorrect_password'})
+         else if(!User.matchesPassword(user, req.body.password)){
+          res.status(401)
+          res.send({reason: 'incorrect_password'})
          }
-      } 
-        res.status(401).send({reason: 'no_such_username'});
-      
+         //user does not exist
+      } else {
+          res.status(400)
+          res.send({reason: 'no_such_username'});
+        }
 });
 // request(app)
 //         .post('/signin')
