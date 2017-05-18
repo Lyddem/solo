@@ -39,7 +39,7 @@ app.post('/signin', function (req, res) {
   //   3. Create a new session
   //   4. Send back new session's id (201)
   // console.log(req.body)
-      var user = User.findByUsername(req.body.username);
+      var user = User.findByUsername(req.body.username); //returns user obj
 
       //if the user already exists...
       if(user !== null){
@@ -47,6 +47,7 @@ app.post('/signin', function (req, res) {
         if(User.matchesPassword(user, req.body.password)){ //<--user given by client, password given by test
          //create session
           var session = Session.create(user.id)
+          console.log('SESSION',session)
           //send 201 and session id
           res.status(201).send({sessionId: session.id })
         //else send a 401
@@ -57,7 +58,7 @@ app.post('/signin', function (req, res) {
           res.send({reason: 'incorrect_password'})
          }
          //user does not exist
-      } else {
+      } else {  
           res.status(400)
           res.send({reason: 'no_such_username'});
         }
@@ -77,12 +78,22 @@ app.post('/messages', function (req, res) {
   // ---
   // TODO:
   //   1. Extract the sessionId from the `Authorization` header
+          // console.log('MESSAGES REQ BODY', req.body);
+          console.log('EXTRACT SESSION ID', extractSessionId(req));
+
+          var header = {'Authorization': auth}
+          console.log('getAUTHORIZATION header', req.get('Authorization'))
+          //create 
+          var session = Session.create(user.id)
+          console.log('Session', session);
+
           // var session = extractSessionId(req);
   //   2. Look up session by its id
-
+  
   //   3. Find user by the userId from the looked-up session
   //   4. Create a new message, with userId as the logged in user's id
   //   5. Send back 201
+          res.sendStatus(201);
   // ---
 });
 

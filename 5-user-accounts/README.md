@@ -11,7 +11,7 @@ $ npm test # <-- Make this pass!
 
 ## Requirements
 
-- [ ] Implement an endpoint for users to sign up
+- [ x ] Implement an endpoint for users to sign up
 - [ ] Implement an endpoint for users to sign in, creating a valid session to access other, authenticated endpoints
 - [ ] Implement an endpoint for signed-in users to create chat messages.
 

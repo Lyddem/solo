@@ -1,4 +1,4 @@
-var db       = require('./db');
+  var db       = require('./db');
 var test     = require('tape');
 var exercise = require('./exercise-3')
 
@@ -33,7 +33,7 @@ test('scoreRange (2)', function (assert) {
 
   exercise.scoreRange(100, 250)
     .then(function (players) {
-      assert.equal(players.length, 3);
+      assert.equal(players.length, 3); //changed
 
       var scores = players.map(function(p){ return p.score });
       assert.deepEqual(

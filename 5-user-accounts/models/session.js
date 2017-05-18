@@ -1,4 +1,4 @@
-  //
+//
 // The Session Model
 //
 var Session = module.exports;

@@ -49,10 +49,8 @@ test('POST /signup (taken username)', function (assert) {
           assert.equal(response.body.reason, 'username_is_taken', "Server should handle taken usernames.")
           assert.end();
         });
-
     });
 })
-
 
 test('POST /signin', function (assert) {
   assert.timeoutAfter(1500)
@@ -75,12 +73,11 @@ test('POST /signin', function (assert) {
           assert.ok(response.body.sessionId, "The server should create a session.");
           assert.end();
         });
-
     });
 });
 
 
-test.skip('POST /signin (incorrect password)', function (assert) {
+test('POST /signin (incorrect password)', function (assert) {
   assert.timeoutAfter(1500)
 
   // First create the user account...
@@ -98,18 +95,15 @@ test.skip('POST /signin (incorrect password)', function (assert) {
         .expect(401)
         .end(function (err, response) {
           assert.error(err);
-
           assert.equal(response.body.reason, 'incorrect_password', "Server should handle incorrect passwords.");
           assert.equal(response.body.sessionId, undefined, "Server should not create a session");
 
           assert.end();
         });
-
     });
 });
 
-
-test.skip('POST /signin (no such user)', function (assert) {
+test('POST /signin (no such user)', function (assert) {
   assert.timeoutAfter(1500)
 
   // Now attempt to sign in
@@ -124,8 +118,7 @@ test.skip('POST /signin (no such user)', function (assert) {
     });
 });
 
-
-test.skip('POST /messages (without signing in)', function (assert) {
+test('POST /messages (without signing in)', function (assert) {
   assert.timeoutAfter(1500)
 
   request(app)
@@ -137,7 +130,6 @@ test.skip('POST /messages (without signing in)', function (assert) {
       assert.end();
     });
 });
-
 
 test.skip('POST /messages', function (assert) {
   assert.timeoutAfter(1500)
@@ -187,7 +179,6 @@ test.skip('POST /messages', function (assert) {
         });
     });
 });
-
 
 test('teardown (ignore this)', function (assert) {
   assert.end()

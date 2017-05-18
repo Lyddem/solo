@@ -1,4 +1,4 @@
-  //
+//
 // The User Model
 //
 var User = module.exports;
@@ -36,7 +36,7 @@ User.create = function (username, password) {
 };
 
 User.matchesPassword = function (user, incomingPassword) {
-  return hashPassword(user.password) === hashPassword(incomingPassword); //<-- me 
+  return user.password === hashPassword(incomingPassword); //<-- change 
 }
 
 //

@@ -78,7 +78,6 @@ assert( testRun[0], 57 );
 assert( testRun[1], 97 );
 console.log("All good!");
 
-
 // Exercise #2
 //
 // 1. Copy/paste your function down here and name it findDominatingAliceGameScores2.
@@ -93,7 +92,7 @@ console.log("All good!");
 //      hasNameAlice({ id: 11, name: 'Bob'   }) //=> false
 
 function findDominatingAliceGameScores2 () {
-  // TODO: Copy/paste the code you wrote in Exercise #1
+// TODO: Copy/paste the code you wrote in Exercise #1
 // First find alice
   var alice = Data.players.find(function hasNameAlice(person){
      return person.name === 'Alice';

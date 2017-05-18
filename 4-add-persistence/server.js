@@ -58,7 +58,7 @@ app.post('/items', function (req, res) {
 //
 
 app.delete('/items', function (req, res) {
-db('groceries').del().then( _ =>  res.sendStatus(200))
+db('groceries').del().then( results =>  res.sendStatus(200))
 });
 
 
